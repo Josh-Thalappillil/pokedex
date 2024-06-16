@@ -38,7 +38,7 @@ body {
   position: absolute; 
   top: 35px; 
   left: 50px; 
-  z-index: 999; 
+  z-index: 1; 
 }
 
 h1, h2, h3, h4 {
