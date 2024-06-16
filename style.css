@@ -551,5 +551,27 @@ input {
     }
   }
 }
+@media (min-width: 1100px) {
+  #selected-pokemon-container {
+    display: flex !important;
+  }
+}
 
+@media (max-width: 380px) {
+  .pokemon-render-result-container {
+    flex: unset;
+    width: 100%;
+  }
 
+  .pokemon-type-container {
+    font-size: 8px;
+  }
+
+  body {
+    width: 90%;
+  }
+
+  #search-bar-container {
+    margin: 40px 0;
+  }
+}
