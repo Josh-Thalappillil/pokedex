@@ -29,7 +29,6 @@ function search() {
   renderPokedex();
 }
 
-
 function getTypeWeaknesses(types) {
   const doubleDamageFrom = new Set();
   const halfDamageFrom = new Set();

@@ -48,7 +48,6 @@ function loadingCompletion() {
     closeButton.classList.remove("hide");
     responsiveBackground.classList.remove("hide");
   
-    // Smooth transition for background opacity
     responsiveBackground.style.opacity = 0;
     setTimeout(function () {
       responsiveBackground.style.opacity = 1;
