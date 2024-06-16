@@ -1,20 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Pokedex</h1>
-        <input type="text" id="searchInput" placeholder="Search Pokemon...">
-        <button id="searchButton">Search</button>
-    </header>
-    <main id="pokemonContainer">
-        
-    </main>
+    <title>Pokédex</title>
+    <link rel="icon" href="/assets/pokeball-tab.png" type="image/x-icon">
+    <script src="services.js"></script>
+    <script src="animation.js"></script>
     <script src="fetchPokemon.js"></script>
-</body>
+    <script src="pokedex.js"></script>
+    <script src="pokemon-selection.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body onload="setup()" class="row">
+    <div id="loading-div">
+      <img src="assets/pokeball-icon-large.png" class="loading-ball" />
+      <div class="progress-bar">
+        <div class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <div class="background"></div>  
+    <img src="assets/pokedex.png" alt="Logo" class="logo">
+    
+    <div id="pokedex-list" class="column">
+      <div id="search-bar-container" class="row container margin-80">
+        <input
+          id="search-input"
+          onkeydown="search()"
+          placeholder="Search for a Pokémon!"
+        />
+        <div id="start-search-button-container" class="center">
+          <img
+            id="start-search-button-icon"
+            src="assets/pokeball-icon-large.png"
+          />
+        </div>
+      </div>
+
+      <div id="pokedex-list-render-container"></div>
+    </div>
+
+    <!--responsive selected pokemon-->
+    <div id="selected-pokemon-responsive-background" class="hide"></div>
+    <div
+      id="selected-pokemon-responsive-close"
+      class="hide"
+      onclick="closePokemonInfo()"
+    >
+      <i class="far fa-window-close"></i>
+    </div>
+
+    <div id="selected-pokemon-container" class="container column center">
+      <div id="selected-pokemon-info" class="hide">
+        <!--Sprite-->
+        <img id="selected-pokemon-sprite" />
+
+        <!--Id, Name, Title-->
+        <span id="selected-pokemon-id"></span>
+        <h2 id="selected-pokemon-name"></h2>
+        <span id="selected-pokemon-title"></span>
+
+        <!--Type/s-->
+        <div id="selected-pokemon-types"></div>
+
+        <!--Flavour Text-->
+        <h4>Pokédex Entry</h4>
+        <span id="selected-pokemon-flavour-text"></span>
+        <div class="row center"></div>
+
+        <!--Abilities-->
+        <div id="selected-pokemon-abilities-container">
+          <h4>Abilities</h4>
+          <div id="selected-pokemon-abilities" class="row center"></div>
+        </div>
+
+        <!--Height and Weight-->
+        <div class="row center">
+          <div class="width-100 column center margin-5">
+            <h4>Height</h4>
+            <div
+              id="selected-pokemon-height"
+              class="pokemon-info-container"
+            ></div>
+          </div>
+          <div class="width-100 column center margin-5">
+            <h4>Weight</h4>
+            <div
+              id="selected-pokemon-weight"
+              class="pokemon-info-container"
+            ></div>
+          </div>
+        </div>
+
+        <!--Weaknesses and Base Exp-->
+        <div class="row center">
+          <div class="width-100 column center margin-5">
+            <h4>Weaknesses</h4>
+            <div
+              id="selected-pokemon-weaknesses"
+              class="selected-pokemon-weaknesses-container"
+            ></div>
+          </div>
+          <div class="width-100 column center margin-5">
+            <h4>Base Exp</h4>
+            <div
+              id="selected-pokemon-base-exp"
+              class="pokemon-info-container"
+            ></div>
+          </div>
+        </div>
+
+        <!--Stats-->
+        <h4>Stats</h4>
+        <div class="row center">
+          <div class="selected-pokemon-stats-container column">
+            <div
+              class="selected-pokemon-stats-icon"
+              style="background: #df2140"
+            >
+              HP
+            </div>
+            <h5 id="selected-pokemon-stats-hp"></h5>
+          </div>
+          <div class="selected-pokemon-stats-container column">
+            <div
+              class="selected-pokemon-stats-icon"
+              style="background: #ff994d"
+            >
+              ATK
+            </div>
+            <h5 id="selected-pokemon-stats-attack"></h5>
+          </div>
+          <div class="selected-pokemon-stats-container column">
+            <div
+              class="selected-pokemon-stats-icon"
+              style="background: #fedc52"
+            >
+              DEF
+            </div>
+            <h5 id="selected-pokemon-stats-defense"></h5>
+          </div>
+          <div class="selected-pokemon-stats-container column">
+            <div
+              class="selected-pokemon-stats-icon"
+              style="background: #85ddff"
+            >
+              SpA
+            </div>
+            <h5 id="selected-pokemon-stats-special-attack"></h5>
+          </div>
+          <div class="selected-pokemon-stats-container column">
+            <div
+              class="selected-pokemon-stats-icon"
+              style="background: #a8f08a"
+            >
+              SpD
+            </div>
+            <h5 id="selected-pokemon-stats-special-defense"></h5>
+          </div>
+          <div class="selected-pokemon-stats-container column">
+            <div
+              class="selected-pokemon-stats-icon"
+              style="background: #fb94a8"
+            >
+              SPD
+            </div>
+            <h5 id="selected-pokemon-stats-speed"></h5>
+          </div>
+          <div
+            class="selected-pokemon-stats-container column"
+            style="background: #8fb1ff"
+          >
+            <div
+              class="selected-pokemon-stats-icon"
+              style="background: #7395db"
+            >
+              TOT
+            </div>
+            <h5 id="selected-pokemon-stats-total"></h5>
+          </div>
+        </div>
+
+        <!--Evolution Chain-->
+        <h4>Evolution</h4>
+        <div id="selected-pokemon-evolution-chain" class="row center"></div>
+
+        <!--Prev/Next Pokemon-->
+        <div id="selected-pokemon-neighbours">
+          <div
+            id="button-wrapper"
+            class="button-wrapper row center margin-5 bold font-size-12"
+          >
+            <button id="left-button" class="left-button">
+              <i class="fas fa-angle-left"></i>
+              <img
+                id="left-neighbour-sprite"
+                class="neighbour-sprite align-middle"
+              />
+              <b id="left-neighbour-name">Prinplup</b>
+              <span id="left-neighbour-id">#394</span>
+            </button>
+            <button id="right-button" class="right-button">
+              <span id="right-neighbour-id">#396</span>
+              <b id="right-neighbour-name">Fletchinder</b>
+              <img
+                id="right-neighbour-sprite"
+                class="neighbour-sprite align-middle"
+              />
+              <i class="fas fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="selected-pokemon-placeholder">
+        <span class="font-size-18">Select a Pokémon<br />to display here</span>
+      </div>
+    </div>
+
+    <img
+      id="loading-pokemon"
+      src="assets/pokeball-icon-large.png"
+      class="loading-ball"
+    />
+  </body>
 </html>
