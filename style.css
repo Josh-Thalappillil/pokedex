@@ -392,4 +392,37 @@ input {
   transition: width 0.1s;
 }
 
+#selected-pokemon-responsive-background {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  display: none;
+  transition: 0.35s;
+}
+
+#selected-pokemon-responsive-close {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 2;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.35s;
+}
+
+#selected-pokemon-responsive-close:hover {
+  opacity: 0.5;
+}
+
+#selected-pokemon-responsive-close > i {
+  text-align: center;
+  font-size: 2em;
+  color: var(--primary-color);
+}
+
+.hideLoading {
+  animation: hideLoading 0.5s ease-in-out forwards;
+}
 
