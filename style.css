@@ -478,4 +478,40 @@ input {
   animation: rotatePokeBall 3s ease-in-out infinite;
 }
 
+@keyframes rotatePokeBall {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1100px) {
+  .progress-bar {
+    width: 300px;
+    height: 3px;
+  }
+
+  #pokedex-list {
+    margin: 0;
+  }
+
+  .pokemon-render-result-container {
+    min-width: 25%;
+    margin: 0 8px;
+  }
+
+  #selected-pokemon-sprite {
+    bottom: 67vh;
+    max-height: 30vh;
+  }
+
+  .pokemon-type-container {
+    font-size: 8px;
+  }
+
+  body {
+    padding: 0 5vw;
+  }
 
