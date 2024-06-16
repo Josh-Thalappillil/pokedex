@@ -515,3 +515,22 @@ input {
     padding: 0 5vw;
   }
 
+  #selected-pokemon-container {
+    z-index: 2;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: calc(100% - 30px);
+    display: none;
+    height: 72vh;
+  }
+
+  #selected-pokemon-responsive-background {
+    display: unset;
+  }
+
+  #loading-pokemon {
+    display: none;
+  }
+
+
