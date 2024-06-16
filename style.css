@@ -494,7 +494,7 @@ input {
     height: 3px;
   }
   .logo {
-    display: none; /* Hide the logo on smaller screens */
+    display: none; 
   }
 
   #pokedex-list {
@@ -503,7 +503,8 @@ input {
 
   .pokemon-render-result-container {
     min-width: 25%;
-    margin: 0 8px;
+    margin: 30px 8px; /* Increased vertical margin */
+    padding-top: 25px;
   }
 
   #selected-pokemon-sprite {
