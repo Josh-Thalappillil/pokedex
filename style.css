@@ -476,6 +476,7 @@ input {
   height: 60px;
   filter: brightness(80%);
   animation: rotatePokeBall 3s ease-in-out infinite;
+  filter: brightness(0%) invert(100%) saturate(0%) brightness(0%);
 }
 
 @keyframes rotatePokeBall {
