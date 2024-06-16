@@ -533,4 +533,23 @@ input {
     display: none;
   }
 
+  @keyframes slideOut {
+    0% {
+      bottom: 0;
+    }
+    100% {
+      bottom: -100vh;
+    }
+  }
+
+  @keyframes slideIn {
+    0% {
+      bottom: -100vh;
+    }
+    100% {
+      bottom: 0;
+    }
+  }
+}
+
 
