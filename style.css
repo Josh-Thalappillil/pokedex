@@ -438,3 +438,43 @@ input {
 .slide-in {
   animation: slideIn 0.35s ease-in-out forwards;
 }
+
+@keyframes slideIn {
+  0% {
+    right: -400px;
+  }
+  100% {
+    right: calc(10vw - 20px);
+  }
+}
+
+.slide-out {
+  animation: slideOut 0.35s ease-in-out forwards;
+}
+
+@keyframes slideOut {
+  0% {
+    right: calc(10vw - 20px);
+  }
+  100% {
+    right: -400px;
+  }
+}
+
+#loading-pokemon {
+  position: fixed;
+  right: calc(10vw - 10px);
+  object-fit: contain;
+  width: 350px;
+  top: 175px;
+  bottom: 0;
+  margin: auto;
+  z-index: -1;
+}
+
+.loading-ball {
+  height: 60px;
+  filter: brightness(80%);
+  animation: rotatePokeBall 3s ease-in-out infinite;
+}
+
