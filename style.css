@@ -233,3 +233,35 @@ input {
   margin: auto;
 }
 
+.pokemon-type-container {
+  border-radius: 5px;
+  padding: 2px 8px;
+  border-color: #fff;
+  margin: 10px 5px 0;
+  font-size: 10px;
+}
+
+#selected-pokemon-container {
+  width: 320px;
+  margin: 10px;
+  height: 72vh;
+  position: fixed;
+  right: calc(10vw - 20px);
+  text-align: center;
+  bottom: 0;
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#selected-pokemon-sprite {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 67vh;
+  margin: auto;
+  object-fit: contain;
+  max-width: 350px;
+  max-height: 25vh;
+}
+
