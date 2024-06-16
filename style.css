@@ -426,3 +426,15 @@ input {
   animation: hideLoading 0.5s ease-in-out forwards;
 }
 
+@keyframes hideLoading {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -100vh;
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.35s ease-in-out forwards;
+}
